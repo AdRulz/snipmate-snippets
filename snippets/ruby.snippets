@@ -922,3 +922,14 @@ snippet aft
 	after :${1:each} do
 		${2}
 	end
+snippet reval
+	%w(${1}).each do |attr|
+		it "have #{attr}" do
+		  should respond_to attr.to_sym
+		end
+
+		it "requires #{attr} to be filed in" do
+			  should_not be_valid
+			  subject.errors[ attr ].should_not be_nil
+		end
+	end
